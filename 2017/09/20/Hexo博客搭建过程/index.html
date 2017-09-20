@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo博客搭建过程 | 洛爷-笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hexo博客搭建记录 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config">
+  <meta name="description" content="具体过程 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config.yml中t">
 <meta name="keywords" content="note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客搭建过程">
 <meta property="og:url" content="http://yoursite.com/2017/09/20/Hexo博客搭建过程/index.html">
 <meta property="og:site_name" content="洛爷-笔记">
-<meta property="og:description" content="Hexo博客搭建记录 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config">
+<meta property="og:description" content="具体过程 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config.yml中t">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-20T08:54:45.000Z">
+<meta property="og:updated_time" content="2017-09-20T09:05:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建过程">
-<meta name="twitter:description" content="Hexo博客搭建记录 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config">
+<meta name="twitter:description" content="具体过程 安装npm: yum install npm 安装hexo: npm install hexo-cli -g 初始博客目录：hexo init blog &amp;amp;&amp;amp; cd blog 按照主题开发安装并更换主题：git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia并更改_config.yml中t">
   
     <link rel="alternative" href="/atom.xml" title="洛爷-笔记" type="application/atom+xml">
   
@@ -167,7 +167,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo博客搭建记录"><a href="#Hexo博客搭建记录" class="headerlink" title="Hexo博客搭建记录"></a>Hexo博客搭建记录</h1><ol>
+        <h2 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h2><ol>
 <li>安装npm: <code>yum install npm</code></li>
 <li>安装hexo: <code>npm install hexo-cli -g</code></li>
 <li>初始博客目录：<code>hexo init blog &amp;&amp; cd blog</code></li>
@@ -176,12 +176,16 @@
 <li>在github上创建仓库<code>${name}.github.com</code>并在<code>_config.yml</code>中<code>deploy</code>更改。 <code>deploy: \n type: git \n repo: &lt;git地址&gt; \n branch: master</code></li>
 <li>解决不能提交到github上问题. <code>npm install hexo-deployer-git --save</code></li>
 <li>写好博文</li>
-<li>清理不必要的页面。<code>hexo clean</code></li>
+<li>清理本地数据库。<code>hexo clean</code></li>
 <li>生成静态页面, <code>hexo generate</code></li>
 <li>部署到github上. <code>hexo deploy</code></li>
 <li>本地调试启动服务器. <code>hexo server</code></li>
 <li>修改配置文件</li>
 <li>将仓库地址设置到<code>blog</code>目录并切换到<code>dev</code>分支，保存到远端仓库</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">主题litten</a></li>
+<li><a href="https://github.com/hexojs/hexo" target="_blank" rel="external">Hexo项目</a></li>
 </ol>
 
       
@@ -285,6 +289,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/09/20/时间序列模型0-简单指数平滑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          时间序列模型0-简单指数平滑
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -427,6 +445,26 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">note,ts,时间序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">note, ts, 时间序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">note ts 时间序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">时间序列</a>
               </li>
             
             <div class="clearfix"></div>
