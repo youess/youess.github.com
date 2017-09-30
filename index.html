@@ -148,6 +148,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Minianaconda安装使用笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/25/Minianaconda安装使用笔记/">Minianaconda安装使用笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/25/Minianaconda安装使用笔记/" class="archive-article-date">
+  	<time datetime="2017-09-25T09:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="external">Minianaconda</a>就不多介绍，应该是我碰到最好的集成使用python的一个工具了，好处谁用谁知道。<br><em>啰嗦一句就是最好的跨平台包管理工具</em></p>
+<ol>
+<li>安装</li>
+</ol>
+<p>到清华镜像站下载最新安装程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 下载</div><div class="line">wget -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda-latest-Linux-x86_64.sh</div><div class="line"></div><div class="line"># 安装按步骤安装就行</div><div class="line">sh Miniconda-latest-Linux-x86_64.sh</div><div class="line"></div><div class="line"># 切换清华镜像源</div><div class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</div><div class="line">conda config --set show_channel_urls yes</div></pre></td></tr></table></figure>
+<ol>
+<li>使用</li>
+</ol>
+<p>可能minianconda安装的python版本不符合你的胃口，换环境换版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 创建一个python3.6的python环境并且安装anaconda相关的包</div><div class="line">conda create -n py36 python=3.6 anaconda</div><div class="line"># 激活</div><div class="line">source activate py36</div><div class="line"># 退出</div><div class="line">source deactivate</div><div class="line"># 设置默认的环境</div><div class="line">conda config --set core.default_env=py36</div></pre></td></tr></table></figure>
+<ol>
+<li>创建虚拟环境</li>
+</ol>
+<p>虚拟环境跟切换python版本环境一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 新建一个env_name，用Python3.6并安装numpy pandas等包</div><div class="line">conda create -n env_name python=3.6 numpy pandas</div><div class="line"></div><div class="line"># 如果不安装任何包</div><div class="line">conda create --no-default-packages -n env_name python</div><div class="line"></div><div class="line"># 环境切换备份</div><div class="line">## backup</div><div class="line">conda list --explicit &gt; my_env_file.txt</div><div class="line">## restore whole environment</div><div class="line">conda create --name myenv --file my_env_file.txt</div><div class="line">## only install all the listed packages</div><div class="line">conda install --name myenv --file my_env_file.txt</div></pre></td></tr></table></figure>
+<ol>
+<li>删除虚拟环境</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 删除</div><div class="line">conda remove --name myenv --all</div><div class="line"># 检查</div><div class="line">conda info --envs</div></pre></td></tr></table></figure>
+<ol>
+<li>记一个从YML文件安装相关包的方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">conda env create -f env.yml</div><div class="line"></div><div class="line"># env.yml内容</div><div class="line">&quot;&quot;&quot;</div><div class="line">name: fast.ai</div><div class="line"></div><div class="line">dependencies:</div><div class="line">  - python=3.6</div><div class="line">  - numpy</div><div class="line">  - pandas</div><div class="line">  - jupyter</div><div class="line">  - matplotlib</div><div class="line">  - pillow</div><div class="line">  - keras==1.2.2</div><div class="line">  - theano</div><div class="line">  - tensorflow</div><div class="line">  - pandas==0.19</div><div class="line">  - scikit-learn</div><div class="line">  - bcolz</div><div class="line">  - sympy</div><div class="line">&quot;&quot;&quot;</div></pre></td></tr></table></figure>
+<p>更多的请参考<a href="https://conda.io/docs/user-guide/tasks/use-r-with-conda.html" target="_blank" rel="external">官方文档</a>, 以及<a href="https://conda.io/docs/_downloads/conda-cheatsheet.pdf" target="_blank" rel="external">cheetsheet</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">conda</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">env</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/25/Minianaconda安装使用笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-时间序列模型0-简单指数平滑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,6 +274,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">y_prediction for t+1 = average([y_t for t in range(0, T, -1)])</div></pre></td></tr></table></figure>
 <h2 id="简单指数平滑-simple-exponential-smoothing-SES"><a href="#简单指数平滑-simple-exponential-smoothing-SES" class="headerlink" title="简单指数平滑(simple exponential smoothing, SES)"></a>简单指数平滑(simple exponential smoothing, SES)</h2><p>SES是一种最简单的预测未来值的方式，它适合用来预测没有趋势以及季节性的数据。它其实就是一种加权的移动平均方式，对每个之前的时间点数据赋予一个指数权重<code>a * (1 - a)^t for t = 0, 1, ...</code>，一般来说越近的时间点数据, 权重就更大一些。如果预测t+n，让其t+n都等于t+1的值就好了。</p>
 <p>平滑过程：<code>yhat(t+1) = a * y(t) + (1 - a) * yhat(t)</code><br>误差：<code>err = yhat(t+1) - y(t+1)</code><br>初始化: 一般取一个值，或者所选序列的均值作为初始预测值<br>优化目标：<code>sse = sum(err(t)**2) for t in 1-&gt;T</code></p>
+<h2 id="以R代码做演示"><a href="#以R代码做演示" class="headerlink" title="以R代码做演示"></a>以R代码做演示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 加载所需包</div><div class="line">require(&apos;forecast&apos;)</div><div class="line">require(&apos;fpp&apos;)</div><div class="line"></div><div class="line"># 取一段时间序列</div><div class="line">oil_sub = window(oil, start=1996, end=2007)</div><div class="line">plot(oil_sub, ylab=&apos;Oil (millions of tonnes)&apos;, xlab=&apos;year&apos;)</div></pre></td></tr></table></figure>
+<p><img src="../assets/img/1.png" alt="01.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 利用SES进行平滑预测</span></div><div class="line">fit1 = ses(oil_sub, alpha=<span class="number">.3</span>, initial=<span class="string">"simple"</span>, h=<span class="number">3</span>)</div><div class="line"><span class="comment"># 参数有程序自己计算</span></div><div class="line">fit2 = ses(oil_sub, h=<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="comment"># 比较两个模型RMSE</span></div><div class="line">cat(<span class="string">"Alpha: "</span>, fit1$model$par[<span class="string">'alpha'</span>], <span class="string">" Model rmse: "</span>, sqrt(fit1$model$SSE / length(fit1$x)), <span class="string">"\n"</span>)</div><div class="line"><span class="comment">## &gt;&gt; Alpha:  0.3  Model rmse:  29.65598</span></div><div class="line">cat(<span class="string">"Alpha: "</span>, fit2$model$par[<span class="string">'alpha'</span>], <span class="string">" Model rmse: "</span>, sqrt(fit2$model$mse), <span class="string">"\n"</span>)</div><div class="line"><span class="comment">## &gt;&gt; Alpha:  0.8920538  Model rmse:  25.12207</span></div></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 画图查看</span></div><div class="line">par(mfrow=c(<span class="number">2</span>, <span class="number">1</span>))</div><div class="line">plot(fit1, ylab=<span class="string">'Oil (millions of tonnes)'</span>, xlab=<span class="string">'year'</span>, main=<span class="string">''</span>, fcol=<span class="string">'white'</span>, type=<span class="string">'o'</span>)</div><div class="line">plot(fit2, ylab=<span class="string">'Oil (millions of tonnes)'</span>, xlab=<span class="string">'year'</span>, main=<span class="string">''</span>, fcol=<span class="string">'white'</span>, type=<span class="string">'o'</span>)</div></pre></td></tr></table></figure>
+<p><img src="../assets/img/2.png" alt="02.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看拟合的图像</span></div><div class="line">plot(fit1, ylab=<span class="string">'Oil (millions of tonnes)'</span>, xlab=<span class="string">'year'</span>, main=<span class="string">''</span>, fcol=<span class="string">'white'</span>, type=<span class="string">'o'</span>, PI=<span class="literal">F</span>)</div><div class="line">lines(fitted(fit1), col=<span class="string">"blue"</span>, type=<span class="string">"o"</span>)      <span class="comment"># fit1拟合数据</span></div><div class="line">lines(fitted(fit2), col=<span class="string">"purple"</span>, type=<span class="string">"o"</span>)    <span class="comment"># fit2拟合数据</span></div><div class="line">lines(fit1$mean, col=<span class="string">"blue"</span>, type=<span class="string">"o"</span>)         <span class="comment"># fit1预测数据</span></div><div class="line">lines(fit2$mean, col=<span class="string">"purple"</span>, type=<span class="string">"o"</span>)       <span class="comment"># fit2预测数据</span></div><div class="line">legend(<span class="string">'topleft'</span>, lty=<span class="number">1</span>, col=c(<span class="number">1</span>, <span class="string">'blue'</span>, <span class="string">'purple'</span>), c(<span class="string">'data'</span>, expression(alpha==<span class="number">0.2</span>), expression(alpha==<span class="number">0.89</span>)), pch=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p><img src="../assets/img/3.png" alt="03.png"></p>
 
       
 
@@ -444,15 +553,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">note,ts,时间序列</a>
+                <a href="javascript:void(0)" class="js-tag color1">conda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">note, ts, 时间序列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">note ts 时间序列</a>
+                <a href="javascript:void(0)" class="js-tag color4">env</a>
               </li>
              
               <li class="article-tag-list-item">
