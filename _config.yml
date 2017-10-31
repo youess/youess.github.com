@@ -38,7 +38,7 @@ filename_case: 0
 render_drafts: false
 
 # enable .ipynb post, default is false
-post_asset_folder: true
+post_asset_folder: false
 
 relative_link: false
 future: true
