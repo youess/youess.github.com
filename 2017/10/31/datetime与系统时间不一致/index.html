@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/9 | 洛爷-笔记</title>
+  <title>datetime与系统时间不一致 | 洛爷-笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随笔，笔记，记录">
-<meta name="keywords" content="ML,机器学习,统计,杂记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="洛爷-笔记">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+  <meta name="description" content="在程序中使用datetime遇到的一个小问题，程序中datetime.today()出来的时间和shell中date不一致。程序中采用的UTC的时间，但是机器是Asia/Shanghai的。 为什么暂时不明白，多个人使用的服务器上暂时想不出为什么 解决思路：  利用datetime模块里面的timezone进行改变  12345from datetime import datetime, time">
+<meta name="keywords" content="python,datetime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="datetime与系统时间不一致">
+<meta property="og:url" content="http://yoursite.com/2017/10/31/datetime与系统时间不一致/index.html">
 <meta property="og:site_name" content="洛爷-笔记">
-<meta property="og:description" content="随笔，笔记，记录">
+<meta property="og:description" content="在程序中使用datetime遇到的一个小问题，程序中datetime.today()出来的时间和shell中date不一致。程序中采用的UTC的时间，但是机器是Asia/Shanghai的。 为什么暂时不明白，多个人使用的服务器上暂时想不出为什么 解决思路：  利用datetime模块里面的timezone进行改变  12345from datetime import datetime, time">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2017-10-31T02:08:14.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="洛爷-笔记">
-<meta name="twitter:description" content="随笔，笔记，记录">
+<meta name="twitter:title" content="datetime与系统时间不一致">
+<meta name="twitter:description" content="在程序中使用datetime遇到的一个小问题，程序中datetime.today()出来的时间和shell中date不一致。程序中采用的UTC的时间，但是机器是Asia/Shanghai的。 为什么暂时不明白，多个人使用的服务器上暂时想不出为什么 解决思路：  利用datetime模块里面的timezone进行改变  12345from datetime import datetime, time">
   
     <link rel="alternative" href="/atom.xml" title="洛爷-笔记" type="application/atom+xml">
   
@@ -146,148 +147,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-datetime与系统时间不一致" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      datetime与系统时间不一致
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/datetime与系统时间不一致/" class="archive-article-date">
+  	<time datetime="2017-10-31T02:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在程序中使用datetime遇到的一个小问题，程序中<code>datetime.today()</code>出来的时间和shell中<code>date</code>不一致。程序中采用的UTC的时间，但是机器是<code>Asia/Shanghai</code>的。</p>
+<p><strong>为什么暂时不明白</strong>，多个人使用的服务器上暂时想不出为什么</p>
+<p>解决思路：</p>
+<ol>
+<li>利用datetime模块里面的timezone进行改变</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from datetime import datetime, timezone, timedelta</div><div class="line"></div><div class="line">tz_delta = timedelta(hours=8)</div><div class="line">tz = timezone(tz_delta)</div><div class="line">today = datetime.now(tz).date()</div></pre></td></tr></table></figure>
+<ol>
+<li>在脚本中直接加入环境变量TZ</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">os.environ[&apos;TZ&apos;] = &apos;Asia/Shanghai&apos;</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/25/Minianaconda安装使用笔记/" class="archive-article-date">
-  	<time datetime="2017-09-25T09:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/25/Minianaconda安装使用笔记/">Minianaconda安装使用笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">conda</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">env</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">datetime</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/31/datetime与系统时间不一致/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/20/时间序列模型0-简单指数平滑/" class="archive-article-date">
-  	<time datetime="2017-09-20T09:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/25/Minianaconda安装使用笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Minianaconda安装使用笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/20/时间序列模型0-简单指数平滑/">时间序列模型0-简单指数平滑</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ts</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">时间序列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/20/Hexo博客搭建过程/" class="archive-article-date">
-  	<time datetime="2017-09-20T08:11:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/20/Hexo博客搭建过程/">Hexo博客搭建过程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">note</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -310,8 +344,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

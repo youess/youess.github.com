@@ -148,6 +148,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-datetime与系统时间不一致" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/datetime与系统时间不一致/">datetime与系统时间不一致</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/datetime与系统时间不一致/" class="archive-article-date">
+  	<time datetime="2017-10-31T02:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在程序中使用datetime遇到的一个小问题，程序中<code>datetime.today()</code>出来的时间和shell中<code>date</code>不一致。程序中采用的UTC的时间，但是机器是<code>Asia/Shanghai</code>的。</p>
+<p><strong>为什么暂时不明白</strong>，多个人使用的服务器上暂时想不出为什么</p>
+<p>解决思路：</p>
+<ol>
+<li>利用datetime模块里面的timezone进行改变</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from datetime import datetime, timezone, timedelta</div><div class="line"></div><div class="line">tz_delta = timedelta(hours=8)</div><div class="line">tz = timezone(tz_delta)</div><div class="line">today = datetime.now(tz).date()</div></pre></td></tr></table></figure>
+<ol>
+<li>在脚本中直接加入环境变量TZ</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">os.environ[&apos;TZ&apos;] = &apos;Asia/Shanghai&apos;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">datetime</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/datetime与系统时间不一致/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Minianaconda安装使用笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -566,6 +654,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">时间序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">datetime</a>
               </li>
             
             <div class="clearfix"></div>
